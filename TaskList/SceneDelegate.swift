@@ -27,7 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 ContentView(taskStore: TaskStore())
             }.navigationViewStyle(StackNavigationViewStyle())
             
-            window.rootViewController = UIHostingController(rootView: contentView)
+            window.rootViewController = UIHostingController(rootView: LandmarkList())
             self.window = window
             window.makeKeyAndVisible()
         }
