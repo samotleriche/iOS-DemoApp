@@ -122,6 +122,12 @@ struct ContentView: View {
                             Text("Info").modifier(ButtonLrgStyle())
                         }
                     }
+//                    NavigationLink(destination: NewTaskView()){
+//                        HStack {
+//                            Image("InfoIcon")
+//                            Text("Info").modifier(ButtonLrgStyle())
+//                        }
+//                    }
                 .background(Image("Button"))
                 }.padding(.bottom, 20).padding(.leading, 20).padding(.trailing, 50)
             }
