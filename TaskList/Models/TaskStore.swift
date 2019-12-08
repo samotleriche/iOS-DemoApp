@@ -8,13 +8,41 @@
 import Combine
 
 class TaskStore: ObservableObject {
-    @Published var tasks = [
-        "30 Pushups",
-        "50 Situps",
-        "20 lunges",
-        "10 squates",
-        "50 curls",
-        "25 down to up curls",
-        "15 bent down strokes"
-        ] .map { Task(name: $0) }
+    
+    
+    @Published var prioritizedTasks = [
+        PrioritizedTasks(
+            priority: .high, names: [
+                "50 Situps",
+                "10 squates",
+                "50 curls",
+            ]
+        ),
+        PrioritizedTasks(
+            priority: .medium, names: [
+                "25 down to up curls",
+                "15 bent down strokes",
+        ]),
+        PrioritizedTasks(
+            priority: .low, names: [
+                "30 Pushups",
+        ]),
+        PrioritizedTasks(
+            priority: .no, names: [
+                "20 lunges",
+        ]),
+    ]
+    
+    func getIndex(for priority: Task.Priority) -> Int {
+        prioritizedTasks.firstIndex { $0.priority == priority }!
+    }
+}
+
+private extension TaskStore.PrioritizedTasks {
+    init(priority: Task.Priority, names: [String]) {
+        self.init(
+            priority: priority,
+            tasks: names.map { Task(name: $0) }
+        )
+    }
 }

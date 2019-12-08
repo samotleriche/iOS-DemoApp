@@ -17,16 +17,11 @@ struct NewTaskView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(taskStore.tasks) { task in
-                    Text(task.name)
-                }
-                .onMove { sourceIndicess, destinationIndex in
-                    self.taskStore.tasks.move(fromOffsets: sourceIndicess, toOffset: destinationIndex)
-                }
-                .onDelete { indexSet in
-                    self.taskStore.tasks.remove(atOffsets: indexSet)
+                ForEach(taskStore.prioritizedTasks) { index in
+                    SectionView(prioritizedTask: self.$taskStore.prioritizedTasks[index])
                 }
             }
+        .listStyle(GroupedListStyle())
         .navigationBarTitle("Tasks")
         .navigationBarItems(
             leading: EditButton(),
@@ -52,3 +47,5 @@ struct NewTaskView_Previews: PreviewProvider {
         NewTaskView(taskStore: TaskStore() )
     }
 }
+
+
